@@ -1,5 +1,5 @@
 <?php
-//- criação da função que converte para dólar
+//criação da função que converte para euro
 
 function validarReal($real){
     if(!is_numeric($real)){
@@ -23,6 +23,12 @@ function realParaDolar($real,$dolar){
             "<p>Valor em dólar: US$ {$dolar}</p>";
 }
 
+function realParaEuro($real, $euro){
+    $euro = $real*0.16;
+    return "<p>Valor em real: R$ {$real}</p>".
+            "<p>Valor em euro: EUR€ {$euro}</p>";
+}
+
 $real = filter_input(INPUT_GET,"real",FILTER_VALIDATE_FLOAT);
 $converter = $_GET["converter"];
 
@@ -32,9 +38,7 @@ if(validarEntrada($real,$converter) == true){
         $mensagem  = realParaDolar($real,$dolar);
     }
     elseif($converter == "euro"){
-        $euro = $real*0.16;
-        $mensagem  = "<p>Valor em real: R$ {$real}</p>".
-                        "<p>Valor em euro: EUR€ {$euro}</p>";
+        $mensagem  = realParaEuro($real,$euro);
     }
     elseif($converter == "rupia"){
         $rupia = $real*16.61;
