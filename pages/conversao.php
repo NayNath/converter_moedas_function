@@ -1,32 +1,61 @@
 <?php
-//- criação da página php sem functions mas funcional
+//- criação da função que valida entradas
+
+function validarReal($real){
+    if(!is_numeric($real)){
+        return false;
+    }
+    return true;
+}
+function validarEntrada($real,$converter){
+    if(!preg_match('/\\d/', $converter) && validarReal($real) == true){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 
 $real = filter_input(INPUT_GET,"real",FILTER_VALIDATE_FLOAT);
-$content = $_GET["content"];
+$converter = $_GET["converter"];
 
-if($content == "dolar"){
-    $dolar = $real*0.19;
-    $mensagem  = "<p>Valor em real: R$ {$real}</p>".
-                    "<p>Valor em dólar: US$ {$dolar}</p>";
-}
-elseif($content == "euro"){
-    $euro = $real*0.16;
-    $mensagem  = "<p>Valor em real: R$ {$real}</p>".
-                    "<p>Valor em euro: EUR€ {$euro}</p>";
-}
-elseif($content == "rupia"){
-    $rupia = $real*16.61;
-    $mensagem  = "<p>Valor em real: R$ {$real}</p>".
-                    "<p>Valor em euro: INR₹ {$rupia}</p>";
+if(validarEntrada($real,$converter) == true){
+    if($converter == "dolar"){
+        $dolar = $real*0.19;
+        $mensagem  = "<p>Valor em real: R$ {$real}</p>".
+                        "<p>Valor em dólar: US$ {$dolar}</p>";
+    }
+    elseif($converter == "euro"){
+        $euro = $real*0.16;
+        $mensagem  = "<p>Valor em real: R$ {$real}</p>".
+                        "<p>Valor em euro: EUR€ {$euro}</p>";
+    }
+    elseif($converter == "rupia"){
+        $rupia = $real*16.61;
+        $mensagem  = "<p>Valor em real: R$ {$real}</p>".
+                        "<p>Valor em euro: INR₹ {$rupia}</p>";
+    }
+    elseif($converter == "todas"){
+        $dolar = $real*0.19;
+        $euro = $real*0.16;
+        $rupia = $real*16.61;
+        $mensagem  = "<p>Valor em real: R$ {$real}</p>".
+                        "<p>Valor em dólar: US$ {$dolar}</p>".
+                        "<p>Valor em euro: EUR€ {$euro}</p>".
+                        "<p>Valor em euro: INR₹ {$rupia}</p>";
+    }
+}else{
+    header("Location: ../index.html");
 }
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./../css/style.css">
 </head>
 <body>
     <div class="mensagem">

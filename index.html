@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +9,14 @@
 <body>
     <form action="./pages/conversao.php">
         <label for="real">Informe um valor em real</label>
-        <input type="text" name="real" id="real">
+        <input type="number" name="real" id="real" step="0.01">
 
         
-        <select name="content" id="content">Escolha a modoeda que deseja converter
+        <select name="converter" id="converter">Escolha a moeda que deseja converter
             <option value="dolar" name="converter">Dólar</option>
             <option value="euro" name="converter">Euro</option>
             <option value="rupia" name="converter">Rúpia Indiana</option>
+            <option value="todas" name="converter">Mostrar todas as opções disponiveis.</option>
         </select>
 
         <button type="submit">Ver conversão</button>
