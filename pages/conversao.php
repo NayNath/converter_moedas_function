@@ -1,5 +1,5 @@
 <?php
-//- criação da função que valida entradas
+//- criação da função que exibe a mensagem
 
 function validarReal($real){
     if(!is_numeric($real)){
@@ -14,7 +14,9 @@ function validarEntrada($real,$converter){
         return false;
     }
 }
-
+function mostrarMensagem($mensagem){
+    echo $mensagem;
+}
 
 $real = filter_input(INPUT_GET,"real",FILTER_VALIDATE_FLOAT);
 $converter = $_GET["converter"];
@@ -59,6 +61,7 @@ if(validarEntrada($real,$converter) == true){
 </head>
 <body>
     <div class="mensagem">
+        <?=mostrarMensagem("Olá, você escolheu a opção {$converter} o resultado é: ");?>
         <?=$mensagem;?>
     </div>
 </body>
