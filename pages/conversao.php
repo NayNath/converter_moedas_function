@@ -19,19 +19,16 @@ function mostrarMensagem($mensagem){
 }
 function realParaDolar($real,$dolar){
     $dolar = $real*0.19;
-    return "<p>Valor em real: R$ {$real}</p>".
-            "<p>Valor em dólar: US$ {$dolar}</p>";
+    return "<p>Valor em dólar: US$ {$dolar}</p>";
 }
 
 function realParaEuro($real, $euro){
     $euro = $real*0.16;
-    return "<p>Valor em real: R$ {$real}</p>".
-            "<p>Valor em euro: EUR€ {$euro}</p>";
+    return "<p>Valor em euro: EUR€ {$euro}</p>";
 }
 function realParaRupia($real, $euro){
     $rupia = $real*16.61;
-    return "<p>Valor em real: R$ {$real}</p>".
-            "<p>Valor em euro: INR₹ {$rupia}</p>";
+    return "<p>Valor em euro: INR₹ {$rupia}</p>";
 }
 
 $real = filter_input(INPUT_GET,"real",FILTER_VALIDATE_FLOAT);
@@ -69,6 +66,7 @@ if(validarEntrada($real,$converter) == true){
 <body>
     <div class="mensagem">
         <?=mostrarMensagem("Olá, você escolheu a opção {$converter} o resultado é: ");?>
+        <?=mostrarMensagem("<p>Valor em real: R$ {$real}</p>");?>
         <?=$mensagem;?>
     </div>
 </body>
