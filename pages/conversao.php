@@ -1,5 +1,5 @@
 <?php
-//- criação da função que exibe a mensagem
+//- criação da função que converte para dólar
 
 function validarReal($real){
     if(!is_numeric($real)){
@@ -17,15 +17,19 @@ function validarEntrada($real,$converter){
 function mostrarMensagem($mensagem){
     echo $mensagem;
 }
+function realParaDolar($real,$dolar){
+    $dolar = $real*0.19;
+    return "<p>Valor em real: R$ {$real}</p>".
+            "<p>Valor em dólar: US$ {$dolar}</p>";
+}
 
 $real = filter_input(INPUT_GET,"real",FILTER_VALIDATE_FLOAT);
 $converter = $_GET["converter"];
 
 if(validarEntrada($real,$converter) == true){
+
     if($converter == "dolar"){
-        $dolar = $real*0.19;
-        $mensagem  = "<p>Valor em real: R$ {$real}</p>".
-                        "<p>Valor em dólar: US$ {$dolar}</p>";
+        $mensagem  = realParaDolar($real,$dolar);
     }
     elseif($converter == "euro"){
         $euro = $real*0.16;
